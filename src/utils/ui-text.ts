@@ -3,15 +3,11 @@ import { createI18n, normalizeLocale, type I18nMessages } from '@navfolio/core';
 import { getResolvedPageModuleI18n } from '@navfolio/pages';
 import navfolioConfig from '../../navfolio.config';
 import en from '../i18n/en.json';
-import zhCN from '../i18n/zh-CN.json';
-import zhTW from '../i18n/zh-TW.json';
 
 export const defaultUiLanguage = 'en';
 
 const rawUiText = {
   en,
-  'zh-CN': zhCN,
-  'zh-TW': zhTW,
 } as const;
 
 type TemplateValues = Record<string, string | number>;

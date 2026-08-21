@@ -6,13 +6,13 @@
 
 ## 产品与配置
 
-Navfolio 是以个人介绍、文章、项目、生活片段、媒体记录和外部身份入口为核心的 Astro
-starter。当前视觉是 calm editorial dashboard：纸张感色板、克制阴影、紧凑标签和
-宽松正文；响应式阅读与导航优先，动效只做增强。
+当前站点是 Abdullah Kassha 的个人 Astro 站点，保留 Navfolio 的 calm editorial
+dashboard 视觉：纸张感色板、克制阴影、紧凑标签和宽松正文；响应式阅读与导航优先，
+动效只做增强。
 
 `src/config/site.toml` 是用户配置面，管理身份、色板、字体、页面文案、首页卡片、
 导航、搜索、评论和展示设置。`navfolio.config.ts` 是构建期组合入口，显式注册
-Projects、Vibe、Media、Pages marker 与 Markdown preset。
+Projects、Pages marker 与 Markdown preset；Vibe 和 Media 当前关闭。
 
 ## 主站组合流程
 
@@ -69,12 +69,9 @@ collection、默认 navigation、scaffold 和 i18n contribution 都应消失。
 
 ## 内容、数据与部署
 
-- starter 内容：`src/content`
-- docs/demo 内容：`src/docs` submodule，由
-  `NAVFOLIO_CONTENT_SOURCE=docs` 选择
-- docs 发布：先推送 `astro-navfolio-docs`，再更新 gitlink 并运行 docs build
-- Friend Circle：部署 Action → `public/friend-circle.json` → MDX component/font
-  subset consumer
+- 个人站内容：`src/content`
+- GitHub Pages 直接构建个人站内容，不再依赖 docs/demo submodule
+- Friend Circle 当前未接入部署
 - WeRead：生态 producer 已存在，但主站无 dependency、workflow、route 或 component
   consumer
 

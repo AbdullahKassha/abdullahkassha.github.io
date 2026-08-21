@@ -61,6 +61,7 @@ interface Props {
   categories?: string[];
   series?: string[];
   contentFont?: 'article' | 'ui';
+  showMetadata?: boolean;
 }
 
 const props = Astro.props;
@@ -172,6 +173,7 @@ const hasSidebar = shouldRenderSidebar && hasToc;
             note={props.headerNote}
             pathname={Astro.url.pathname}
             showPageView={isBlogPost}
+            showMetadata={props.showMetadata}
           />
 
           {

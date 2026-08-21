@@ -20,12 +20,12 @@ schema、host adapter、尚未抽取的 UI、构建部署，以及各 `@navfolio
 
 ## 当前边界
 
-- `navfolio.config.ts` 显式启用 Projects、Vibe、Media、Pages marker 和 Markdown
-  preset。
+- `navfolio.config.ts` 显式启用 Projects、Pages marker 和 Markdown preset；Vibe 与
+  Media 当前关闭。
 - `src/config/site.toml` 管理用户可编辑的站点、主题、字体、页面文案、导航、搜索、
   评论和首页配置。
 - `src/content.config.ts` 仍集中拥有 Astro collection schemas，并按 module 状态
-  条件注册 Projects、Vibe、Media。
+  条件注册 Projects、Vibe、Media；当前只注册 Projects。
 - Projects UI 仍在 `src/modules/routes/**`；Vibe 与 Media 使用 package-owned
   routes。
 - `src/modules/page-runtime.ts` 是 package-owned route 使用的 host adapter。
@@ -34,17 +34,16 @@ schema、host adapter、尚未抽取的 UI、构建部署，以及各 `@navfolio
   仍属于主站。
 - `@navfolio/plugin-markdown` 配置编译管线；`@navfolio/mdx-components` 提供显式
   import 的内容组件。
-- `src/docs` 是 `astro-navfolio-docs` 的 submodule，不是普通主站源码目录。
-- Friend Circle 已接入部署；WeRead 仍没有主站 consumer。
+- 个人站内容位于 `src/content`；不再使用 docs/demo submodule。
+- Friend Circle 与 WeRead 当前都没有主站部署 consumer。
 
 ## 修改规则
 
 - 行为应改在真正的 owner 仓库，不要因为主站是组合根就把逻辑写回主站。
 - 页面模块变更同时检查 route、collection、navigation、scaffold、i18n 与
   `virtual:navfolio/page-runtime`。
-- 修改 docs 时先提交并推送独立 docs 仓库，再更新主站 submodule 指针。
-- 保持 starter/docs 两种内容模式可构建，保持 calm editorial 视觉、可访问性、响应式
-  行为和无 JavaScript 的基本可读性。
+- 保持个人站静态内容模式可构建，保持 calm editorial 视觉、可访问性、响应式行为和
+  无 JavaScript 的基本可读性。
 - 不提交 secret、依赖缓存、临时构建产物或未经明确授权的个人数据快照。
 - 保留用户无关改动，不回滚或覆盖任务范围外的工作。
 
@@ -55,7 +54,6 @@ schema、host adapter、尚未抽取的 UI、构建部署，以及各 `@navfolio
 ```bash
 bun run format:check
 bun run build
-bun run docs:build
 ```
 
 可见 UI、路由、导航、样式或 hydration 改动还要进行浏览器检查。

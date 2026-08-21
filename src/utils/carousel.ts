@@ -35,7 +35,7 @@ class AstroCarouselElement extends HTMLElement {
   private interval = 5000;
   private startIndex = 0;
   private showDots = true;
-  private slideRoleDescription = '幻灯片';
+  private slideRoleDescription = 'slide';
   private currentIndex = 0;
   private isPlaying = false;
   private timerId?: number;
@@ -56,7 +56,7 @@ class AstroCarouselElement extends HTMLElement {
     this.interval = Number(this.dataset.interval || 5000);
     this.startIndex = Number(this.dataset.startIndex || 0);
     this.showDots = this.dataset.showDots === 'true';
-    this.slideRoleDescription = this.dataset.slideRoleDescription || '幻灯片';
+    this.slideRoleDescription = this.dataset.slideRoleDescription || 'slide';
     this.currentIndex = 0;
     this.isPlaying = false;
     this.timerId = undefined;
@@ -130,11 +130,11 @@ class AstroCarouselElement extends HTMLElement {
 
     this.dotsContainer.textContent = '';
     this.dots = this.slides.map((slide, index) => {
-      const label = slide.getAttribute('data-carousel-label') || `第 ${index + 1} 张`;
+      const label = slide.getAttribute('data-carousel-label') || `Slide ${index + 1}`;
       const dot = document.createElement('button');
       dot.type = 'button';
       dot.className = 'mdx-carousel__dot';
-      dot.setAttribute('aria-label', `显示${label}`);
+      dot.setAttribute('aria-label', `Show ${label}`);
       dot.addEventListener('click', () => {
         this.stopAutoplay();
         this.goTo(index);
@@ -309,7 +309,7 @@ class AstroCarouselElement extends HTMLElement {
     if (this.toggleButton) {
       this.toggleButton.setAttribute(
         'aria-label',
-        this.isPlaying ? '暂停自动播放' : '开始自动播放',
+        this.isPlaying ? 'Pause autoplay' : 'Start autoplay',
       );
       this.toggleButton.dataset.playing = this.isPlaying ? 'true' : 'false';
     }

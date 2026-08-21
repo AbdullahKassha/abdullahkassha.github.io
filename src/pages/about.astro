@@ -16,6 +16,7 @@ const { Content, headings } = await render(about);
   headings={headings}
   sidebar={{ enable: false, ...about.data.sidebar }}
   contentFont="ui"
+  showMetadata={false}
 >
   <Content />
 </BlogArticle>

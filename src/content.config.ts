@@ -121,7 +121,7 @@ const defaultGiscusConfig = {
   input_position: 'bottom',
   light_theme: 'github-light',
   dark_theme: 'github-dark',
-  lang: 'zh-CN',
+  lang: 'en',
   loading: 'lazy',
 };
 
@@ -134,7 +134,7 @@ const defaultUtterancesConfig = {
 
 const defaultWalineConfig = {
   server_url: '',
-  lang: 'zh-CN',
+  lang: 'en',
   dark: 'html.dark',
   pageview: true,
   comment: true,
@@ -350,7 +350,7 @@ const siteConfig = defineCollection({
             input_position: z.string().optional().default('bottom'),
             light_theme: z.string().optional().default('light'),
             dark_theme: z.string().optional().default('dark'),
-            lang: z.string().optional().default('zh-CN'),
+            lang: z.string().optional().default('en'),
             loading: z.string().optional().default('lazy'),
           })
           .optional()
@@ -367,7 +367,7 @@ const siteConfig = defineCollection({
         waline: z
           .object({
             server_url: z.string().optional().default(''),
-            lang: z.string().optional().default('zh-CN'),
+            lang: z.string().optional().default('en'),
             dark: z.string().optional().default('html.dark'),
             pageview: z.boolean().optional().default(true),
             comment: z.boolean().optional().default(true),
@@ -381,9 +381,9 @@ const siteConfig = defineCollection({
       name: z.string(),
       handle: z.string(),
       role: z.string(),
-      email: z.email(),
+      email: z.union([z.literal(''), z.email()]),
       website: z.url(),
-      github: z.url(),
+      github: z.union([z.literal(''), z.url()]),
       avatar: z.string(),
     }),
     topNav: z.object({
@@ -441,12 +441,15 @@ const siteConfig = defineCollection({
         }),
       navigation: z.array(navigationItemSchema),
       links: z.array(homeLinkSchema).optional().default([]),
-      doing: z.array(
-        z.object({
-          text: z.string(),
-          mark: z.string(),
-        }),
-      ),
+      doing: z
+        .array(
+          z.object({
+            text: z.string(),
+            mark: z.string(),
+          }),
+        )
+        .optional()
+        .default([]),
     }),
   }),
 });

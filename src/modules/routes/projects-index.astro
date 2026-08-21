@@ -84,6 +84,7 @@ function withBase(href: string) {
   headerKicker={pageMeta.kicker}
   headerNote={pageMeta.note}
   contentFont="ui"
+  showMetadata={false}
 >
   <Content />
 
@@ -153,9 +154,7 @@ function withBase(href: string) {
       </section>
     ) : (
       <section class="project-empty" aria-label={i18n.t('projects.emptyLabel')}>
-        <span aria-hidden="true">01</span>
-        <h2>{i18n.t('projects.emptyTitle')}</h2>
-        <p>{i18n.t('projects.emptyNote')}</p>
+        <p>Selected projects will appear here.</p>
       </section>
     )
   }
@@ -165,7 +164,6 @@ function withBase(href: string) {
   .project-meta,
   .project-authors,
   .project-links,
-  .project-empty span,
   .project-tags small {
     font-family: var(--font-ui-label);
   }
@@ -212,16 +210,14 @@ function withBase(href: string) {
     color: var(--project-icon-color, var(--paper-accent));
   }
 
-  .project-meta,
-  .project-empty span {
+  .project-meta {
     color: var(--paper-ink-faint);
     font-size: 0.76rem;
     font-weight: 600;
     letter-spacing: 0.08em;
   }
 
-  .project-card h2,
-  .project-empty h2 {
+  .project-card h2 {
     margin: 0;
     color: var(--paper-ink);
     font-family: var(--font-ui-label);

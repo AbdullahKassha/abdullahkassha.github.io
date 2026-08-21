@@ -14,15 +14,13 @@
   聚合，以及页面包自带 Markdown 模板的标准变量渲染。
 - `post:new`、`project:new`、`vibe:new`、`media:new` 统一使用
   `<filename> [output-directory]` 参数；默认 frontmatter 和正文不再硬编码在脚本。
-- Projects、Vibe、Media 的 starter 显式注册；Vibe 和 Media 的 package-owned
-  routes。
+- Projects 显式注册；Vibe 和 Media 当前关闭。
 - Markdown preset 对 Expressive Code、callout、columns/timeline、responsive
   tables、Mermaid 和 math 的组合。
 - `mdx-components` 的显式内容 components/runtime helpers，包括友链申请表单、
   字段数据复制与 GitHub Issue/Issue Form 预填。
 - 首页 dashboard、Blog archive/category/series/tag、搜索、评论、多语言 UI。
-- starter 与 docs/demo 双内容模式。
-- Friend Circle build-time sync、静态 JSON consumer 和字体子集联动。
+- 单一 `src/content` 个人内容模式，GitHub Pages 直接构建该内容。
 
 ## 过渡中
 
@@ -33,7 +31,6 @@
 - collection schemas 仍由主站集中定义。
 - GitHub dependencies 通过远端 commit 和 lockfile 集成，没有统一的 sibling
   workspace linking。
-- deploy 使用 docs submodule `--remote`，但本地可复现仍依赖正确提交 gitlink。
 
 ## 已存在但未接入主站
 
