@@ -30,3 +30,6 @@ AGENTS.md
 scripts/fonts/ui-chars.txt
 public/fonts/*-subset.woff2
 public/friend-circle.json
+
+# local publication materials
+.local/
