@@ -38,7 +38,7 @@ jobs:
 
       - name: Build site
         env:
-          SITE_URL: https://abdullahkassha.github.io
+          SITE_URL: https://kassha.xyz
           SITE_BASE: /
         run: bun run build
 

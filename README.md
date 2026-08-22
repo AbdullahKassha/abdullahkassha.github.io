@@ -2,7 +2,7 @@
 
 Personal website of Abdullah Kassha.
 
-Live site: [abdullahkassha.github.io](https://abdullahkassha.github.io/)
+Live site: [kassha.xyz](https://kassha.xyz/)
 
 The site is a home for:
 
