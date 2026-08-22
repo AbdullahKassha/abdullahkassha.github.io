@@ -1,0 +1,30 @@
+---
+const siteOrigin = Astro.site?.origin ?? '';
+---
+
+<script is:inline define:vars={{ siteOrigin }}>
+  const articleContent = document.querySelector('.article-content');
+  const internalOrigins = new Set([window.location.origin, siteOrigin].filter(Boolean));
+
+  for (const link of articleContent?.querySelectorAll('a[href]') ?? []) {
+    const rawHref = link.getAttribute('href');
+    if (!rawHref || !/^(?:https?:)?\/\//i.test(rawHref)) continue;
+
+    try {
+      const resolvedHref = new URL(rawHref, window.location.href);
+      const isExternal =
+        ['http:', 'https:'].includes(resolvedHref.protocol) &&
+        !internalOrigins.has(resolvedHref.origin);
+
+      if (!isExternal) continue;
+
+      link.setAttribute('target', '_blank');
+      const rel = new Set((link.getAttribute('rel') ?? '').split(/\s+/).filter(Boolean));
+      rel.add('noopener');
+      rel.add('noreferrer');
+      link.setAttribute('rel', [...rel].join(' '));
+    } catch {
+      // Leave malformed links unchanged and let the browser handle them normally.
+    }
+  }
+</script>
