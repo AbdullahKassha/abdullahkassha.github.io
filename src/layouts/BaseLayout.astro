@@ -10,9 +10,11 @@ import { getHtmlLang } from '../utils/ui-text';
 interface Props {
   title: string;
   description: string;
+  structuredData?: Record<string, unknown>;
+  googleSiteVerification?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, structuredData, googleSiteVerification } = Astro.props;
 const siteConfig = await getSiteConfig();
 const palette = siteConfig.theme.palette;
 const htmlLang = getHtmlLang(siteConfig);
@@ -20,7 +22,12 @@ const htmlLang = getHtmlLang(siteConfig);
 
 <ThemeBaseLayout htmlLang={htmlLang} palette={palette}>
   <Fragment slot="head">
-    <BaseHead title={title} description={description} />
+    <BaseHead
+      title={title}
+      description={description}
+      structuredData={structuredData}
+      googleSiteVerification={googleSiteVerification}
+    />
   </Fragment>
   <Fragment slot="navigation">
     <BlogTopNav />

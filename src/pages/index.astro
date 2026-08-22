@@ -1,15 +1,35 @@
 ---
+import { getCollection } from 'astro:content';
 import IntroCard from '../components/cards/IntroCard.astro';
 import NavigationCard from '../components/cards/NavigationCard.astro';
 import ProfileCard from '../components/cards/ProfileCard.astro';
+import LatestWriting from '../components/home/LatestWriting.astro';
 import DashboardFlow from '../components/layout/DashboardFlow.astro';
 import { getSiteConfig } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { sortByDateDesc } from '../utils/content-dates';
 
 const { home, profile, site } = await getSiteConfig();
+const latestWriting = sortByDateDesc(await getCollection('blog', ({ data }) => !data.draft)).slice(
+  0,
+  home.latest.count,
+);
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.title,
+  url: site.url,
+  description: site.pageDescription,
+};
+const googleSiteVerification = 'TGykRygTWEHpWICYE-xwl6V73R0Wihj7EJSXX7KcydI';
 ---
 
-<BaseLayout title={site.pageTitle} description={site.pageDescription}>
+<BaseLayout
+  title={site.pageTitle}
+  description={site.pageDescription}
+  structuredData={structuredData}
+  googleSiteVerification={googleSiteVerification}
+>
   <div class="publication-bg" aria-hidden="true"></div>
   <DashboardFlow>
     <Fragment slot="profile">
@@ -17,7 +37,11 @@ const { home, profile, site } = await getSiteConfig();
     </Fragment>
 
     <Fragment slot="intro">
-      <IntroCard intro={home.intro} quote={home.quote} />
+      <IntroCard intro={home.intro} />
+    </Fragment>
+
+    <Fragment slot="latest-writing">
+      <LatestWriting posts={latestWriting} />
     </Fragment>
 
     <Fragment slot="navigation">

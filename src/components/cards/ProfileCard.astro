@@ -20,25 +20,27 @@ const initials = profile.name
 
 <article class="profile-card">
   <div class="avatar-wrap">
+    <span class="avatar-placeholder" aria-hidden="true">
+      {initials}
+    </span>
     {
-      profile.avatar ? (
+      profile.avatar && (
         <img
           src={profile.avatar}
-          alt={`${profile.name} portrait`}
+          alt={profile.name}
           width="176"
           height="176"
           loading="eager"
+          decoding="async"
+          referrerpolicy="no-referrer"
+          onerror="this.hidden = true"
         />
-      ) : (
-        <span class="avatar-placeholder" aria-hidden="true">
-          {initials}
-        </span>
       )
     }
   </div>
 
   <div class="profile-heading">
-    <h1>{profile.name}</h1>
+    <h2>{profile.name}</h2>
     {profile.handle && <p>{profile.handle}</p>}
     {
       profile.role && (
@@ -80,6 +82,9 @@ const initials = profile.name
   }
 
   .avatar-wrap img {
+    position: absolute;
+    inset: 0;
+    display: block;
     object-fit: cover;
   }
 
@@ -94,7 +99,7 @@ const initials = profile.name
     letter-spacing: 0.04em;
   }
 
-  .profile-heading h1 {
+  .profile-heading h2 {
     margin: 0;
     color: var(--paper-ink);
     font-size: 1.42rem;

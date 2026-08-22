@@ -17,6 +17,7 @@ const { Content, headings } = await render(about);
   sidebar={{ enable: false, ...about.data.sidebar }}
   contentFont="ui"
   showMetadata={false}
+  noIndex
 >
   <Content />
 </BlogArticle>

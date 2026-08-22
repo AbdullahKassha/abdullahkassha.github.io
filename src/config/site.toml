@@ -1,8 +1,8 @@
 [config.site]
 title = "Abdullah Kassha"
-description = "Personal writing and projects by Abdullah Kassha."
+description = "Personal writing by Abdullah Kassha, including investigations, notes, experiments, essays, and other useful work."
 pageTitle = "Abdullah Kassha"
-pageDescription = "A personal space for writing, projects, and useful notes."
+pageDescription = "A personal place for things worth keeping and sharing."
 url = "https://abdullahkassha.github.io"
 repository = "https://github.com/AbdullahKassha/AbdullahKassha.github.io"
 footerNote = ""
@@ -36,7 +36,7 @@ show_on_posts = false
 [config.search]
 enabled = true
 shortcut = "mod+k"
-placeholder = "Search writing and projects..."
+placeholder = "Search writing..."
 maxResults = 6
 
 [config.pages.blog]
@@ -74,7 +74,7 @@ role = ""
 email = ""
 website = "https://abdullahkassha.github.io/"
 github = ""
-avatar = ""
+avatar = "https://github.com/AbdullahKassha.png?size=352"
 
 [[config.topNav.links]]
 label = "Home"
@@ -83,14 +83,6 @@ href = "/"
 [[config.topNav.links]]
 label = "Writing"
 href = "/blog"
-
-[[config.topNav.links]]
-label = "Projects"
-module = "projects"
-
-[[config.topNav.links]]
-label = "About"
-href = "/about"
 
 [config.home]
 
@@ -101,15 +93,14 @@ text = [
 ]
 
 [config.home.intro]
-title = "I'm Abdullah Kassha"
+title = "Hi, I'm Abdullah."
 name = "Abdullah Kassha"
 body = [
-  "This is a simple personal space for writing and projects.",
-  "Writing may include technical investigations, notes, experiments, essays, and other useful work.",
+  "A personal place for things worth keeping and sharing.",
 ]
 
 [config.home.latest]
-count = 1
+count = 3
 heatmapWeeks = 24
 showHeatmapLatest = true
 excludeDraft = true
@@ -121,18 +112,6 @@ icon = "pen"
 title = "Writing"
 subtitle = "Investigations, notes, experiments, and essays"
 href = "/blog"
-
-[[config.home.navigation]]
-icon = "briefcase"
-title = "Projects"
-subtitle = "Projects and implementation notes"
-href = "/projects"
-
-[[config.home.navigation]]
-icon = "compass"
-title = "About"
-subtitle = "About Abdullah Kassha and this site"
-href = "/about"
 
 [[config.home.navigation]]
 icon = "rss"

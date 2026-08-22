@@ -2,6 +2,7 @@
   <section class="flow-grid" aria-label="Abdullah Kassha personal site">
     <section class="flow-column main-column">
       <slot name="intro" />
+      <slot name="latest-writing" />
       <slot name="doing" />
     </section>
 
@@ -50,7 +51,7 @@
     margin-bottom: 16px;
   }
 
-  .flow-grid :global(.profile-heading h1) {
+  .flow-grid :global(.profile-heading h2) {
     font-size: 1.52rem;
   }
 
@@ -123,6 +124,10 @@
     }
 
     .flow-grid :global(.doing-card) {
+      order: 7;
+    }
+
+    .flow-grid :global(.latest-writing) {
       order: 6;
     }
   }

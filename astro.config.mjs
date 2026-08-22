@@ -61,6 +61,7 @@ const resolvedSite =
 
 const resolvedBase =
   customBase || (isGitHubActions && isProjectPage && repositoryName ? `/${repositoryName}` : '/');
+const sitemapExcludedPaths = new Set(['/about/', '/projects/']);
 
 // https://astro.build/config
 export default defineConfig({
@@ -70,7 +71,13 @@ export default defineConfig({
     remarkPlugins: astroPluginConfig.remarkPlugins,
     rehypePlugins: astroPluginConfig.rehypePlugins,
   },
-  integrations: [...astroPluginConfig.integrations, mdx(), sitemap()],
+  integrations: [
+    ...astroPluginConfig.integrations,
+    mdx(),
+    sitemap({
+      filter: (page) => !sitemapExcludedPaths.has(new URL(page).pathname),
+    }),
+  ],
 
   vite: {
     plugins: [tailwindcss()],
